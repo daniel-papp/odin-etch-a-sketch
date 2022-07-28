@@ -5,18 +5,26 @@
 }
 
 body {
-    background-color: rgb(250, 161, 109);
+    background-color: rgb(252, 183, 142);
 }
 
 #container {
-    display: grid;
-    grid-template-columns: repeat(16, auto);
-    column-gap: 0px;
-    width: 160px;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+.grid-row {
+    width: 100%;
+    flex: 1;
+    display: flex;
 }
 
 .pixel {
-    width: 10px;
-    height: 10px;
+    flex: 1;
     background-color: #fff;
+    /* border: 1px solid red; */
 }
