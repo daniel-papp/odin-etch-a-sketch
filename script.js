@@ -12,17 +12,23 @@ function createGrid(size) {
             const pixel = document.createElement('div');
             pixel.classList.add('pixel');
             row.appendChild(pixel);
-            colorByHover(pixel);
+            pixel.addEventListener('mouseover', () => colorByHover(pixel));
         }
     }
 }
 
 // colorByHover: adds a class when hovering over a pixel
 
-function colorByHover(element) {
-    element.addEventListener('mouseover', () => element.classList.add('colored'));
-}
+let mouseIsDown = false;
+document.body.onmousedown = () => (mouseIsDown = true);
+document.body.onmouseup = () => (mouseIsDown = false);
 
+
+function colorByHover(element) {
+    if (mouseIsDown) {
+        element.classList.add('colored');
+    }
+}
 
 
 // ------ Calling Functions ------
