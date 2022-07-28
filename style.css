@@ -1,3 +1,7 @@
+:root {
+    --colored-color: #000;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -27,4 +31,8 @@ body {
     flex: 1;
     background-color: #fff;
     /* border: 1px solid red; */
+}
+
+.colored {
+    background-color: var(--colored-color);
 }

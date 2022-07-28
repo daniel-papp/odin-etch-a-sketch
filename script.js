@@ -11,7 +11,6 @@
 //     }
 // }
 
-
 function createFlexGrid(size) {
     const container = document.getElementById('container');
     for (let i = 0; i < size; i++) {
@@ -22,9 +21,14 @@ function createFlexGrid(size) {
             const pixel = document.createElement('div');
             pixel.classList.add('pixel');
             row.appendChild(pixel);
+            pixel.addEventListener('mouseover', () => pixel.classList.add('colored'));
         }
     }
 }
+
+// colorByHover: adds a class when hovering over a pixel
+
+
 
 
 // ------ Calling Functions ------
