@@ -73,6 +73,8 @@ function setSize() {
 function clearGrid() {
     const pixels = document.querySelectorAll('.pixel');
     pixels.forEach((item) => item.classList.remove('colored'));
+    pixels.forEach((item) => item.style.cssText = '');
+
 }
 
 // ------ Calling Functions ------
