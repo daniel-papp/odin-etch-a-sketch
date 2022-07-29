@@ -3,7 +3,12 @@
 // createGrid: creates a size x size grid for the pixels
 
 function createGrid(size) {
-    const container = document.getElementById('container');
+    // const container = document.getElementById('container');
+    const main = document.querySelector('main');
+    const container = document.createElement('div');
+    container.setAttribute('id', 'container');
+    main.appendChild(container);
+    
     for (let i = 0; i < size; i++) {
         const row = document.createElement('div');
         row.classList.add('grid-row');
@@ -30,8 +35,28 @@ function colorByHover(element) {
     }
 }
 
+// setSize: asks for a new size and recreates the grid
+
+function setSize() {
+    const main = document.querySelector('main');
+    let newSize = prompt('Enter new grid size (max-size: 100):');
+    console.log(Number(newSize));
+    if (newSize === null) {
+        newSize = 16;
+    } else if (newSize > 100) {
+        newSize = 100;
+    } else if (newSize < 1) {
+        newSize = 1;
+    }
+    main.removeChild(container);
+    createGrid(newSize);
+    console.log(newSize);
+}
 
 // ------ Calling Functions ------
 
-const size = 16;
-createGrid(size);
+const defaultSize = 16;
+createGrid(defaultSize);
+
+const setSizeButton = document.getElementById('size-btn');
+setSizeButton.addEventListener('click', setSize);
