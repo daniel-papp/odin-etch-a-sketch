@@ -40,17 +40,22 @@ function colorByHover(element) {
 function setSize() {
     const main = document.querySelector('main');
     let newSize = prompt('Enter new grid size (max-size: 100):');
-    console.log(Number(newSize));
-    if (newSize === null) {
-        newSize = 16;
-    } else if (newSize > 100) {
-        newSize = 100;
-    } else if (newSize < 1) {
-        newSize = 1;
+    console.log(`input: ${Number(newSize)}`);
+    switch (true) {
+        case (newSize >=1 && newSize <= 100) :
+            break;
+        case (newSize > 100) :
+            newSize = 100;
+            break;
+        case (newSize < 1) :
+            newSize = 1;
+            break;
+        default :
+            newSize = 16;
     }
     main.removeChild(container);
     createGrid(newSize);
-    console.log(newSize);
+    console.log(`grid size: ${newSize}`);
 }
 
 // ------ Calling Functions ------
