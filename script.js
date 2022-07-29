@@ -17,7 +17,7 @@ function createGrid(size) {
             const pixel = document.createElement('div');
             pixel.classList.add('pixel');
             row.appendChild(pixel);
-            pixel.addEventListener('mouseover', () => colorByHover(pixel));
+            pixel.addEventListener('mouseover', () => colorRainbow(pixel));
         }
     }
 }
@@ -35,12 +35,23 @@ function colorByHover(element) {
     }
 }
 
+// colorRainbow: changes pixels to random colors
+
+function colorRainbow(element) {
+    const red = Math.floor(Math.random()*255);
+    const green = Math.floor(Math.random()*255);
+    const blue = Math.floor(Math.random()*255);
+    if (mouseIsDown) {
+        element.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`;
+    }
+
+}
+
 // setSize: asks for a new size and recreates the grid
 
 function setSize() {
     const main = document.querySelector('main');
     let newSize = prompt('Enter new grid size (max-size: 100):');
-    console.log(`input: ${Number(newSize)}`);
     switch (true) {
         case (newSize >=1 && newSize <= 100) :
             break;
@@ -55,7 +66,6 @@ function setSize() {
     }
     main.removeChild(container);
     createGrid(newSize);
-    console.log(`grid size: ${newSize}`);
 }
 
 // clearGrid: clears the coloring from each pixel
@@ -75,8 +85,3 @@ setSizeButton.addEventListener('click', setSize);
 
 const clearButton = document.getElementById('clear-btn');
 clearButton.addEventListener('click', clearGrid);
-
-
-
-
-// commit message: "Add clear grid functionality"
