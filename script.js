@@ -58,6 +58,13 @@ function setSize() {
     console.log(`grid size: ${newSize}`);
 }
 
+// clearGrid: clears the coloring from each pixel
+
+function clearGrid() {
+    const pixels = document.querySelectorAll('.pixel');
+    pixels.forEach((item) => item.classList.remove('colored'));
+}
+
 // ------ Calling Functions ------
 
 const defaultSize = 16;
@@ -65,3 +72,11 @@ createGrid(defaultSize);
 
 const setSizeButton = document.getElementById('size-btn');
 setSizeButton.addEventListener('click', setSize);
+
+const clearButton = document.getElementById('clear-btn');
+clearButton.addEventListener('click', clearGrid);
+
+
+
+
+// commit message: "Add clear grid functionality"
