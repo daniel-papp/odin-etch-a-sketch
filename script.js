@@ -3,7 +3,6 @@
 // createGrid: creates a size x size grid for the pixels
 
 function createGrid(size) {
-    // const container = document.getElementById('container');
     const main = document.querySelector('main');
     const container = document.createElement('div');
     container.setAttribute('id', 'container');
@@ -22,7 +21,7 @@ function createGrid(size) {
     }
 }
 
-// colorByHover: adds a class when hovering over a pixel
+// colorByHover: adds a class when hovering over a pixel (currently unused)
 
 let mouseIsDown = false;
 document.body.onmousedown = () => (mouseIsDown = true);
@@ -35,16 +34,9 @@ function colorByHover(element) {
     }
 }
 
-// colorRainbow: changes pixels to random colors
+// colorRainbow: changes pixels to random colors or darkens them if already colored
 
 function colorRainbow(element) {
-    // const red = Math.floor(Math.random()*255);
-    // const green = Math.floor(Math.random()*255);
-    // const blue = Math.floor(Math.random()*255);
-    // if (mouseIsDown) {
-    //     element.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`;
-    // }
-
     const hue = Math.floor(Math.random()*360);
     if (mouseIsDown) {
         const hslArr = getHsl(element);
@@ -54,7 +46,6 @@ function colorRainbow(element) {
             element.style.backgroundColor = `hsl(${hslArr[0]}, 100%, ${hslArr[2] - 5}%)`;
         }
     }
-
 }
 
 // getHsl: returns element color in HSL array
@@ -62,7 +53,6 @@ function colorRainbow(element) {
 function getHsl(element) {
     const rgbString = element.style.backgroundColor;
     let rgbArr = rgbString.split(',');
-    console.log(rgbString);
     if (rgbString === '') {
         rgbArr = [255, 255, 255];
     } else {
@@ -71,13 +61,7 @@ function getHsl(element) {
         rgbArr[2] = rgbArr[2].substring(1, rgbArr[2].length -1);
     }
 
-    console.log(rgbString);
-    console.log(rgbArr);
-    
     const hslArr = rgbToHsl(rgbArr[0], rgbArr[1], rgbArr[2]);
-
-    console.log(hslArr);
-    console.log(`hsl(${hslArr[0]}, ${hslArr[1]}%, ${hslArr[2]}%)`);
 
     return hslArr;
 }
@@ -119,7 +103,6 @@ function rgbToHsl(r, g, b) {
 
     return [h, s, l];
 }
-
 
 // setSize: asks for a new size and recreates the grid
 
