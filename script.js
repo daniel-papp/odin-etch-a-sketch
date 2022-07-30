@@ -38,11 +38,16 @@ function colorByHover(element) {
 // colorRainbow: changes pixels to random colors
 
 function colorRainbow(element) {
-    const red = Math.floor(Math.random()*255);
-    const green = Math.floor(Math.random()*255);
-    const blue = Math.floor(Math.random()*255);
+    // const red = Math.floor(Math.random()*255);
+    // const green = Math.floor(Math.random()*255);
+    // const blue = Math.floor(Math.random()*255);
+    // if (mouseIsDown) {
+    //     element.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`;
+    // }
+
+    const hue = Math.floor(Math.random()*360);
     if (mouseIsDown) {
-        element.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`;
+        element.style.cssText = `background-color: hsl(${hue}, 100%, 50%);`;
     }
 
 }
