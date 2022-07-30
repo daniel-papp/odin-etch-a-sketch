@@ -47,10 +47,61 @@ function colorRainbow(element) {
 
     const hue = Math.floor(Math.random()*360);
     if (mouseIsDown) {
-        element.style.cssText = `background-color: hsl(${hue}, 100%, 50%);`;
+        element.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+        getRgb(element);
     }
 
 }
+
+// getRgb: returns element color in rgb array
+
+function getRgb(element) {
+    const rgbString = element.style.backgroundColor;
+    const rgbArr = rgbString.split(',');
+    rgbArr[0] = rgbArr[0].substring(4);
+    rgbArr[1] = rgbArr[1].substring(1);
+    rgbArr[2] = rgbArr[2].substring(1);
+
+    console.log(rgbString);
+    console.log(rgbArr);
+    
+    return rgbArr;
+}
+
+// rgbToHsl: converts RGB to HSL
+
+function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h;
+    let s;
+    let l = (max + min) / 2 * 100;
+
+    if (max == min) {
+        h = s = 0;
+    } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) * 100 : d / (max + min) * 100;
+        switch(max){
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+        h = h / 6 * 360;
+    }
+
+    return [h, s, l];
+}
+
 
 // setSize: asks for a new size and recreates the grid
 
