@@ -53,19 +53,24 @@ function colorRainbow(element) {
 
 }
 
-// getRgb: returns element color in rgb array
+// getHsl: returns element color in HSL array
 
-function getRgb(element) {
+function getHsl(element) {
     const rgbString = element.style.backgroundColor;
     const rgbArr = rgbString.split(',');
     rgbArr[0] = rgbArr[0].substring(4);
     rgbArr[1] = rgbArr[1].substring(1);
-    rgbArr[2] = rgbArr[2].substring(1);
+    rgbArr[2] = rgbArr[2].substring(1, rgbArr[2].length -1);
 
     console.log(rgbString);
     console.log(rgbArr);
     
-    return rgbArr;
+    const hslArr = rgbToHsl(rgbArr[0], rgbArr[1], rgbArr[2]);
+
+    console.log(hslArr);
+    console.log(`hsl(${hslArr[0]}, ${hslArr[1]}%, ${hslArr[2]}%)`);
+
+    return hslArr;
 }
 
 // rgbToHsl: converts RGB to HSL
@@ -98,6 +103,10 @@ function rgbToHsl(r, g, b) {
         }
         h = h / 6 * 360;
     }
+
+    h = Math.round(h);
+    s = Math.round(s);
+    l = Math.round(l);
 
     return [h, s, l];
 }
