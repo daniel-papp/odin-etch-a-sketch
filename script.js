@@ -47,8 +47,12 @@ function colorRainbow(element) {
 
     const hue = Math.floor(Math.random()*360);
     if (mouseIsDown) {
-        element.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
-        getRgb(element);
+        const hslArr = getHsl(element);
+        if (hslArr[2] === 100) {
+            element.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+        } else {
+            element.style.backgroundColor = `hsl(${hslArr[0]}, 100%, ${hslArr[2] - 5}%)`;
+        }
     }
 
 }
@@ -57,10 +61,15 @@ function colorRainbow(element) {
 
 function getHsl(element) {
     const rgbString = element.style.backgroundColor;
-    const rgbArr = rgbString.split(',');
-    rgbArr[0] = rgbArr[0].substring(4);
-    rgbArr[1] = rgbArr[1].substring(1);
-    rgbArr[2] = rgbArr[2].substring(1, rgbArr[2].length -1);
+    let rgbArr = rgbString.split(',');
+    console.log(rgbString);
+    if (rgbString === '') {
+        rgbArr = [255, 255, 255];
+    } else {
+        rgbArr[0] = rgbArr[0].substring(4);
+        rgbArr[1] = rgbArr[1].substring(1);
+        rgbArr[2] = rgbArr[2].substring(1, rgbArr[2].length -1);
+    }
 
     console.log(rgbString);
     console.log(rgbArr);
